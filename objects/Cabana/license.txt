@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low Poly Wood Cabin
+* source:	https://sketchfab.com/3d-models/low-poly-wood-cabin-9cf56ec5285244fa91541df5341f839b
+* author:	emijar (https://sketchfab.com/emijar)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low Poly Wood Cabin" (https://sketchfab.com/3d-models/low-poly-wood-cabin-9cf56ec5285244fa91541df5341f839b) by emijar (https://sketchfab.com/emijar) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

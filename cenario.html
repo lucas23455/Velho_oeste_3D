@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cenário de Velho Oeste</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="js/three.js"></script>
+    <script src="js/loaders/loders.js"></script>
+    <script src="js/controls/OrbitControls.js"></script>
+    <script src="js/loaders/GLTFLoader.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+
+        // Carregar a textura de fundo
+        const loader = new THREE.TextureLoader();
+        loader.load('objects/Fundo/ceuestrelado.jpg', function (texture) {
+            scene.background = texture; // Define a imagem como fundo da cena
+        });
+
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        function dumpObject(obj, lines = [], isLast = true, prefix = '') {
+            const localPrefix = isLast ? '└─' : '├─';
+            lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
+            const newPrefix = prefix + (isLast ? ' ' : '│ ');
+            const lastNdx = obj.children.length - 1;
+            obj.children.forEach((child, ndx) => {
+                const isLast = ndx === lastNdx;
+                dumpObject(child, lines, isLast, newPrefix);
+            });
+            return lines;
+        };
+
+        //LOADER
+        const gltfLoader = new THREE.GLTFLoader();
+        const cabana = 'objects/Cabana/scene.gltf'
+        const banco = 'objects/Banco/scene.gltf'
+        const banco2 = 'objects/Banco2/scene.gltf'
+        const casa = 'objects/Casa/scene.gltf'
+        const igreja = 'objects/Igreja/scene.gltf'
+        const mesa = 'objects/Mesa/scene.gltf'
+        const cacto = 'objects/Cacto/scene.gltf'
+        const bar = 'objects/Bar/scene.gltf'
+        const rancho = 'objects/Rancho/scene.gltf'
+        const carroca = 'objects/Carroca/scene.gltf'
+        const house_town = 'objects/House_town/scene.gltf'
+        const cerca = 'objects/Cerca/scene.gltf'
+        const cerca1 = 'objects/Cerca/scene.gltf'
+        const cerca2 = 'objects/Cerca/scene.gltf'
+        const cerca3 = 'objects/Cerca/scene.gltf'
+        const cerca4 = 'objects/Cerca/scene.gltf'
+        const cerca5 = 'objects/Cerca/scene.gltf'
+        const cerca6 = 'objects/Cerca/scene.gltf'
+        const cerca7 = 'objects/Cerca/scene.gltf'
+        const cerca8 = 'objects/Cerca/scene.gltf'
+        const cerca9 = 'objects/Cerca/scene.gltf'
+        const cerca10 = 'objects/Cerca/scene.gltf'
+        const cerca11 = 'objects/Cerca/scene.gltf'
+        const cerca12 = 'objects/Cerca/scene.gltf'
+        const cerca13 = 'objects/Cerca/scene.gltf'
+        const cerca14 = 'objects/Cerca/scene.gltf'
+        const cerca15 = 'objects/Cerca/scene.gltf'
+        const estande = 'objects/Estande/scene.gltf'
+        const forca = 'objects/Forca/scene.gltf'
+        const cavaloAnimado = 'objects/horseAnimado/untitled.glb'
+        const horse2 = 'objects/horse2/scene.gltf'
+        const poste = 'objects/poste/scene.gltf'
+        const cactoBlender = 'objects/cactoBlender/cacto.glb'
+        const torreAguaBlender = 'objects/torreAguaBlender/torredeagua.glb'
+    
+        let mixer;
+        let cavaloAnimadoObject;
+
+        gltfLoader.load(cactoBlender, (gltf) => {
+            gltf.scene.scale.set(0.5, 0.5, 0.5);
+            const root = gltf.scene;
+            root.position.set(7, 0, -10);
+            scene.add(root);
+        });
+
+        gltfLoader.load(torreAguaBlender, (gltf) => {
+            gltf.scene.scale.set(1, 1, 1);
+            const root = gltf.scene;
+            root.position.set(-15, 0, -25);
+            root.rotation.y = Math.PI; // 45 graus em Y
+            scene.add(root);
+        });
+
+        gltfLoader.load(cavaloAnimado, (gltf) => {
+            gltf.scene.scale.set(1, 1, 1)
+            const root = gltf.scene;
+            root.position.y = 0
+            root.position.z = 25;
+            scene.add(root);
+            cavaloAnimadoObject = root.getObjectByName('Sketchfab_model');//Sketchfab_model
+            // console.log(dumpObject(root))
+            mixer = new THREE.AnimationMixer(root);
+            const clips = gltf.animations;
+            const clip = THREE.AnimationClip.findByName(clips, 'Armature_rootJointAction');
+            const action = mixer.clipAction(clip);
+            action.play()
+        });
+
+         gltfLoader.load(horse2, (gltf) => {
+                gltf.scene.scale.set(1, 1, 1);
+                const root = gltf.scene;
+                root.position.set(30, 1.5, -37); // Posição do rancho
+
+                // Ajuste de rotação no eixo Y para que o rancho fique de frente para a casa
+                root.rotation.y = 0; // ou ajuste o valor até que ele fique de frente
+
+                scene.add(root);
+            });
+
+
+        gltfLoader.load(cabana, (gltf) => {
+                gltf.scene.scale.set(0.5, 0.5, 0.5);
+                const root = gltf.scene;
+                root.position.set(50, -1, -35); // Posição do rancho
+
+                // Ajuste de rotação no eixo Y para que o rancho fique de frente para a casa
+                root.rotation.y = 0; // ou ajuste o valor até que ele fique de frente
+
+                    scene.add(root);
+                });
+
+        
+
+        
+        gltfLoader.load(banco, (gltf) => {
+                gltf.scene.scale.set(1, 1, 1);
+                const root = gltf.scene;
+                root.position.set(12, 0, -2);
+                root.rotation.y = -Math.PI / 2; // Rotaciona o banco em 90 graus
+                scene.add(root);
+            });
+
+
+        gltfLoader.load(igreja, (gltf) => {
+            gltf.scene.scale.set(1, 1, 1);
+            const root = gltf.scene;
+            root.position.set(30, 0, -8);
+            scene.add(root);
+        });
+
+        gltfLoader.load(mesa, (gltf) => {
+            gltf.scene.scale.set(0.4, 0.4, 0.4);
+            const root = gltf.scene;
+            root.position.set(-8.5, 1, -5);
+            root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+            scene.add(root);
+        });
+
+        gltfLoader.load(estande, (gltf) => {
+                gltf.scene.scale.set(1, 1, 1);
+                const root = gltf.scene;
+                root.position.set(5, 0, 10);
+                root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+                scene.add(root);
+        });
+
+        gltfLoader.load(casa, (gltf) => {
+            gltf.scene.scale.set(1, 1, 1);
+            const root = gltf.scene;
+            root.position.set(10, 0, 20);
+            root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+            scene.add(root);
+        });
+
+         gltfLoader.load(house_town, (gltf) => {
+                gltf.scene.scale.set(1, 1, 1);
+                const root = gltf.scene;
+                root.position.set(10, 0, 20);
+                root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+                scene.add(root);
+            });
+        
+        gltfLoader.load(poste, (gltf) => {
+            gltf.scene.scale.set(0.6, 0.6, 0.6);
+            const root = gltf.scene;
+            root.position.set(-10, 0, 20);
+            scene.add(root);
+        });
+
+
+        const posteLuz1 = new THREE.PointLight(0xFFD700, 1, 100);
+        posteLuz1.position.set(-8,5, 20);
+        scene.add(posteLuz1);
+        const corPost = new THREE.Color("#FFD700");
+        const geometryLuzPoste = new THREE.IcosahedronGeometry(1, 1);
+        const materialPoste = new THREE.MeshBasicMaterial({ color: corPost });
+        const luzPoste = new THREE.Mesh(geometryLuzPoste, materialPoste);
+        luzPoste.position.set(-8.2, 4.6, 20);
+        luzPoste.scale.set(0.08,0.08,0.08)
+        scene.add(luzPoste);
+
+
+        gltfLoader.load(poste, (gltf) => {
+            gltf.scene.scale.set(0.6, 0.6, 0.6);
+            const root = gltf.scene;
+            root.position.set(-10, 0, -15);
+            scene.add(root);
+        });
+
+        const posteLuz2 = new THREE.PointLight(0xFFD700, 1, 100);
+        posteLuz2.position.set(-8,5, -15);
+        scene.add(posteLuz2);
+        const luzPoste2 = new THREE.Mesh(geometryLuzPoste, materialPoste);
+        luzPoste2.position.set(-8.2, 4.6, -15);
+        luzPoste2.scale.set(0.08,0.08,0.08)
+        scene.add(luzPoste2);
+
+        gltfLoader.load(banco2, (gltf) => {
+                gltf.scene.scale.set(1, 1, 1);
+                const root = gltf.scene;
+                root.position.set(-10, 1, -3);
+                root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+                scene.add(root);
+            }); 
+
+        gltfLoader.load(bar, (gltf) => {
+                    gltf.scene.scale.set(1, 1, 1);
+                    const root = gltf.scene;
+                    root.position.set(-10, 1, -40);
+                    root.rotation.y =  Math.PI / 2; // Rotaciona o banco em 90 graus
+                    scene.add(root);
+                });
+        
+        gltfLoader.load(carroca, (gltf) => {
+            gltf.scene.scale.set(1.5, 1.5, 1.5);
+            const root = gltf.scene;
+            root.position.set(-20, 1.2, 25);
+            root.rotation.y = Math.PI / 2; // Rotaciona o banco em 90 graus
+            scene.add(root);
+        });        
+
+        gltfLoader.load(forca, (gltf) => {
+                    gltf.scene.scale.set(0.5, 0.5, 0.5);
+                    const root = gltf.scene;
+                    root.position.set(-8, 1.6, -10);
+                     root.rotation.y = - Math.PI / 2; // Rotaciona o banco em 90 graus
+                    scene.add(root);
+                });
+
+
+        //HORIZONTAL
+        gltfLoader.load(cerca, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-7, 1.6, -25); // Primeira cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca1, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-1.5, 1.6, -25); // Segunda cerca deslocada no eixo X
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca2, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(4, 1.6, -25); // Terceira cerca mais adiante no eixo X
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca3, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(9.5, 1.6, -25); // Quarta cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca4, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(15, 1.6, -25); // Quinta cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca5, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(19.5, 1.6, -25); // Sexta cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+
+            gltfLoader.load(cerca6, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(29, 1.6, -25); // Sétima cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca7, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(34.3, 1.6, -25); // Sétima cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca8, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(39.5, 1.6, -25); // Sétima cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca9, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(44.5, 1.6, -25); // Sétima cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            });            
+        gltfLoader.load(cerca10, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(47.5, 1.6, -25); // Sétima cerca
+                root.rotation.y = -Math.PI / 2;
+                scene.add(root);
+            }); 
+
+
+        //VERTCAL ESQUERDO
+        gltfLoader.load(cerca11, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-10, 1.6, -27); // Primeira cerca
+                root.rotation.Z = Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca12, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-10, 1.6, -32); // Primeira cerca
+                root.rotation.Z = Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca13, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-10, 1.6, -37); // Primeira cerca
+                root.rotation.Z = Math.PI / 2;
+                scene.add(root);
+            });
+        gltfLoader.load(cerca14, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-10, 1.6, -42); // Primeira cerca
+                root.rotation.Z = Math.PI / 2;
+                scene.add(root);
+            }); 
+        gltfLoader.load(cerca15, (gltf) => {
+                gltf.scene.scale.set(8, 8, 8);
+                const root = gltf.scene;
+                root.position.set(-10, 1.6, -47); // Primeira cerca
+                root.rotation.Z = Math.PI / 2;
+                scene.add(root);
+            });  
+
+        gltfLoader.load(rancho, (gltf) => {
+                gltf.scene.scale.set(2, 2, 2);
+                const root = gltf.scene;
+                root.position.set(5, 4, -37); // Posição do rancho
+
+                // Ajuste de rotação no eixo Y para que o rancho fique de frente para a casa
+                root.rotation.y = 0; // ou ajuste o valor até que ele fique de frente
+
+                scene.add(root);
+            });
+        
+
+        gltfLoader.load(cacto, (gltf) => {
+            gltf.scene.scale.set(1, 1, 1);
+            const root = gltf.scene;
+            root.position.set(21, 0, -5);
+            scene.add(root);
+        });
+
+      
+
+        // Chão
+        // Loader para texturas
+        const textureLoader = new THREE.TextureLoader();
+        const groundTexture = textureLoader.load('objects/Fundo/fundo4.jpg'); // Substitua pelo nome da sua textura
+
+        // Configurando a textura para se repetir
+        groundTexture.wrapS = THREE.RepeatWrapping;
+        groundTexture.wrapT = THREE.RepeatWrapping;
+        groundTexture.repeat.set(10, 10); // Ajuste os valores para definir a repetição da textura
+
+        // Criando a geometria do chão
+        const groundGeometry = new THREE.PlaneGeometry(100, 100);
+        const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture }); // Usando a textura como material
+        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -Math.PI / 2; // Rotação do plano
+        scene.add(ground); // Adicionando o chão à cena
+
+        // Iluminação 404040
+        const ambientLight = new THREE.AmbientLight(0x101010, 0.5);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(0, 100, 0);
+
+        directionalLight.castShadow = true;  // A luz projeta sombras
+        directionalLight.shadow.mapSize.width = 2048;  // Tamanho da textura da sombra (mais alta = mais detalhada)
+        directionalLight.shadow.mapSize.height = 2048;
+        directionalLight.shadow.camera.near = 0.1;
+        directionalLight.shadow.camera.far = 10;
+        directionalLight.shadow.bias = -0.005; 
+        scene.add(directionalLight);
+
+        // const pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
+        // pointLight.position.set(10, 15, 10);
+        // scene.add(pointLight);
+
+        // Controles de Câmera
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        camera.position.set(0, 10, 30); // Ajuste a posição da câmera
+        controls.update();
+
+        //LUA 
+        const color = new THREE.Color("#FFFFFF");
+        const geometry = new THREE.IcosahedronGeometry(3, 15);
+        const material = new THREE.MeshBasicMaterial({ color: color });
+        const lua = new THREE.Mesh(geometry, material);
+        lua.position.set(30, 150, 0);
+        
+        scene.add(lua);
+
+        const luzDaLua = new THREE.PointLight(
+            "#FFFFFF",
+            1,
+            1000,
+            0,
+        );
+        scene.add(luzDaLua);
+
+        const clock = new THREE.Clock();
+        // Animação
+        function animate() {
+            requestAnimationFrame(animate);
+            if(mixer){
+                mixer.update(clock.getDelta());
+
+            }
+
+            if(lua.position.y <= 100){
+                lua.position.x += 0.03;
+                lua.position.z += 0.03;
+                lua.position.y += 0.03;
+                luzDaLua.position.x += 0.03;
+                luzDaLua.position.z +=0.03;
+                luzDaLua.position.y += 0.03; 
+            }
+            else
+            {
+                lua.position.x -= 0.03;
+                lua.position.z -= 0.03;
+                lua.position.y -= 0.03;
+                luzDaLua.position.x -= 0.03;
+                luzDaLua.position.z -= 0.03;
+                luzDaLua.position.y -= 0.03; 
+            }
+            if(typeof cavaloAnimadoObject !=="undefined"){
+
+                if(cavaloAnimadoObject.position.z >= -30){
+                    cavaloAnimadoObject.position.z -= 0.1;
+                }
+                else{
+                    cavaloAnimadoObject.position.z = 25;
+                }
+                console.log(cavaloAnimadoObject.position.z)
+            }
+            
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        // Responsividade
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+
+</html>

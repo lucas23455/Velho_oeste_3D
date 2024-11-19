@@ -1,0 +1,11 @@
+Model Information:
+* title:	Western Town House 1
+* source:	https://sketchfab.com/3d-models/western-town-house-1-046e0e8b768b4d95a22dc482c100903a
+* author:	Anthony Ferrandiz (https://sketchfab.com/AnthonyFerrandiz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Western Town House 1" (https://sketchfab.com/3d-models/western-town-house-1-046e0e8b768b4d95a22dc482c100903a) by Anthony Ferrandiz (https://sketchfab.com/AnthonyFerrandiz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

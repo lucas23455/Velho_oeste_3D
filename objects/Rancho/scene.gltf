@@ -1,0 +1,280 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1144,
+      "max": [
+        1.75,
+        1.5,
+        1.610129952430725
+      ],
+      "min": [
+        -1.75,
+        -1.5,
+        -1.0234899520874023
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 13728,
+      "componentType": 5126,
+      "count": 1144,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1144,
+      "max": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1144,
+      "max": [
+        0.9955599904060364,
+        0.9996600151062012
+      ],
+      "min": [
+        0.00033999999868683517,
+        0.0052200001664459705
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 2136,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "adam127 (https://sketchfab.com/adam127)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/rancho-barn-ff17c3a8e40f41cca9a47a8ef6b67ea8",
+      "title": "Rancho Barn"
+    },
+    "generator": "Sketchfab-12.63.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 8544,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9152,
+      "byteOffset": 8544,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 27456,
+      "byteOffset": 17696,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 18304,
+      "byteOffset": 45152,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 63456,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/rancho_barn_baseColor.png"
+    },
+    {
+      "uri": "textures/rancho_barn_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "rancho_barn",
+      "normalTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.6
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "rancho barn_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2,
+        4
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        3
+      ],
+      "matrix": [
+        1.6,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.6,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.6,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "rancho barn"
+    },
+    {
+      "mesh": 0,
+      "name": "rancho barn_0"
+    },
+    {
+      "children": [
+        5
+      ],
+      "matrix": [
+        0.6086000000000001,
+        -0.44444000000000006,
+        -0.6573200000000001,
+        0.0,
+        0.5897500000000001,
+        0.80759,
+        0.0,
+        0.0,
+        0.53085,
+        -0.38766000000000006,
+        0.7536100000000001,
+        0.0,
+        4.2658499999999995,
+        9.97657,
+        0.92248,
+        1.0
+      ],
+      "name": "Sun"
+    },
+    {
+      "name": "Sun"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    }
+  ]
+}

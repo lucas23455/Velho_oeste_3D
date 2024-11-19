@@ -1,0 +1,11 @@
+Model Information:
+* title:	Poste lampara de petroleo
+* source:	https://sketchfab.com/3d-models/poste-lampara-de-petroleo-6c0017fd0e3e43c5a0c77051b6f74495
+* author:	Tidus (https://sketchfab.com/JuegosChafas)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Poste lampara de petroleo" (https://sketchfab.com/3d-models/poste-lampara-de-petroleo-6c0017fd0e3e43c5a0c77051b6f74495) by Tidus (https://sketchfab.com/JuegosChafas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
